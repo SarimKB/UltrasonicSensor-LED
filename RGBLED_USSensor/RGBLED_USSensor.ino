@@ -9,11 +9,10 @@
 #define ECHO_PIN 11
 
 //Fading time between colors
-#define delayTime 10
+#define delayTime 30
 
 //Ultrasonic sensor object and distance variable
 SR04 sr04 = SR04(ECHO_PIN, TRIG_PIN);
-long dist;
 
 void setup()  {
   //Setting pins
@@ -27,8 +26,6 @@ void setup()  {
 }
 
 void loop() {
-  //Getting distance sensed by ultrasonic sensor in cm
-  //dist = sr04.Distance();
 
   //Static variables for RGB values
   static int blueVal = 255;
@@ -52,7 +49,8 @@ void loop() {
         }
       }
     }
-
+    
+    analogWrite(GREEN, greenVal);
     analogWrite(BLUE, blueVal);
     analogWrite(RED, redVal);
     delay(delayTime);
@@ -76,6 +74,7 @@ void loop() {
       }
     }
 
+    analogWrite(BLUE, blueVal);
     analogWrite(RED, redVal);
     analogWrite(GREEN, greenVal);
     delay(delayTime);
@@ -98,7 +97,8 @@ void loop() {
         }
       }
     }
-
+    
+    analogWrite(RED, redVal);
     analogWrite(GREEN, greenVal);
     analogWrite(BLUE, blueVal);
     delay(delayTime);
